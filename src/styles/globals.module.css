@@ -1,0 +1,11 @@
+
+.mainContainer{
+  padding: 0px 20px;
+}
+.navbarContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 0px 10px;
+}
