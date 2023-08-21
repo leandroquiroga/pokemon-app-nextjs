@@ -10,7 +10,7 @@ const colorDarkMode = {
   primarySolidContrast: "#9BA1A6",
   primaryShadow: "#a074ff",
   text: "#ECEDEE",
-  background: "#b408c5",
+  background: "#202020",
 };
 
 const colorLigthMode = {
@@ -26,7 +26,7 @@ const colorLigthMode = {
   primaryShadow: "#ccd6cd",
   text: "#16181A",
   textNavbar: '#ECEDEE',
-  background: "#4d59cc",
+  background: "#FFF",
 };
 
 

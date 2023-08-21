@@ -1,5 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
+import { useTheme } from "@nextui-org/react";
+import { darkTheme, lightTheme } from "@/themes";
 
 import { LayoutProps } from '../../interfaces/index';
 import { NavBar } from '../index';
@@ -7,10 +9,12 @@ import { NavBar } from '../index';
 import styles from "../../styles/globals.module.css";
 
 export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
+  const { isDark } = useTheme();
+
   return (
     <>
       <Head>
-        <title>{title || 'Pokemon App'}</title>
+        <title>{title || "Pokemon App"}</title>
         <meta name="author" content="Leandro Quiroga" />
         <meta name="description" content="Informacion sobre pokemones" />
         <meta
@@ -20,7 +24,17 @@ export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       </Head>
 
       <NavBar />
-      <main className={styles.mainContainer}>{children}</main>
+      <main
+        className={styles.mainContainer}
+        style={{
+          backgroundColor: `${
+            isDark
+              ? darkTheme["colors"].background.value
+              : lightTheme["colors"].background.value
+          }`,
+        }}>
+        {children}
+      </main>
     </>
   );
 };
