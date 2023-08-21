@@ -4,8 +4,6 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 import { darkTheme, lightTheme } from '../themes';
 
-import '@/styles/globals.css'
-
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <NextThemesProvider
