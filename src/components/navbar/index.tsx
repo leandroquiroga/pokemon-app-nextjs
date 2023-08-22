@@ -1,17 +1,18 @@
 import { useTheme as useNextTheme } from "next-themes";
-import { Switch, useTheme, Link, Image, Spacer } from "@nextui-org/react";
+import { useTheme, Spacer } from "@nextui-org/react";
+import { Button } from '@nextui-org/button'
 
 import { darkTheme, lightTheme } from '../../themes';
-import { LogoPokeDark, LogoPokeLigth } from '../../assets';
+import { LogoPokeDark, LogoPokeLigth, LogoMoon, LogoSun } from '../../assets';
 
 import styles from "../../styles/globals.module.css";
 
 export const NavBar = () => {
-  const { setTheme } = useNextTheme();
-  const { isDark, type, theme } = useTheme();
-
+  const { setTheme, theme } = useNextTheme();
+  const { isDark, type } = useTheme();
 
   const isTheme = (): boolean => type === 'dark';
+  const handleChangeTheme = () => setTheme(!isDark ? "dark" : "light");
 
   return (
     <nav
@@ -19,8 +20,8 @@ export const NavBar = () => {
       style={{
         backgroundColor: `${
           isTheme()
-            ? darkTheme["colors"].background.value
-            : lightTheme["colors"].background.value
+            ? darkTheme["colors"].backgroundNavbar.value
+            : lightTheme["colors"].backgroundNavbar.value
         }`,
         color: `${
           isTheme()
@@ -31,21 +32,15 @@ export const NavBar = () => {
       {isTheme() ? <LogoPokeLigth /> : <LogoPokeDark />}
 
       <Spacer x={30} />
-      <Switch
-        initialChecked
-        checked={isDark}
-        onChange={(e: any) => setTheme(e.target.checked ? "dark" : "light")}
-      />
+
+      <Button
+        isIconOnly
+        onClick={handleChangeTheme}
+        value={theme}
+        className={styles.buttonNavBarContainer}  
+      >
+        {isTheme() ? <LogoSun /> : <LogoMoon />}
+      </Button>
     </nav>
   );
 }
-
-// {type === "dark" ? (
-//   <Image src={logoMoon} alt="logo-dark" />
-// ) : (
-//   <Image src={logoSun} alt="logo-ligth" />
-// )}
-// <Switch
-//   checked={isDark}
-//   onChange={(e: any) => setTheme(e.target.checked ? "dark" : "light")}
-// />
