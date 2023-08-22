@@ -20,8 +20,8 @@ export const NavBar = () => {
       style={{
         backgroundColor: `${
           isTheme()
-            ? darkTheme["colors"].primary.value
-            : lightTheme["colors"].primary.value
+            ? darkTheme["colors"].backgroundNavbar.value
+            : lightTheme["colors"].backgroundNavbar.value
         }`,
         color: `${
           isTheme()
@@ -37,28 +37,10 @@ export const NavBar = () => {
         isIconOnly
         onClick={handleChangeTheme}
         value={theme}
-        style={{
-          backgroundColor: "transparent",
-          border: "none",
-          cursor: "pointer",
-        }}>
+        className={styles.buttonNavBarContainer}  
+      >
         {isTheme() ? <LogoSun /> : <LogoMoon />}
       </Button>
     </nav>
   );
 }
-{/* <Switch
-  initialChecked
-  checked={isDark}
-  onChange={(e: any) => setTheme(e.target.checked ? "dark" : "light")}
-/> */}
-
-// {type === "dark" ? (
-//   <Image src={logoMoon} alt="logo-dark" />
-// ) : (
-//   <Image src={logoSun} alt="logo-ligth" />
-// )}
-// <Switch
-//   checked={isDark}
-//   onChange={(e: any) => setTheme(e.target.checked ? "dark" : "light")}
-// />

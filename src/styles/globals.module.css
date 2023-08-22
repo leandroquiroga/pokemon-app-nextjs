@@ -7,6 +7,16 @@
   display: flex;
   width: 100%;
   flex-direction: row;
-  justify-content: flex-start;
-  padding: 0px 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+}
+
+.buttonNavBarContainer{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  flex-direction: row;
+  align-items: center;
+  display: flex;
 }
