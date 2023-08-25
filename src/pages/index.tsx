@@ -1,24 +1,30 @@
 import React from 'react'
-import { GetStaticProps, NextPage, InferGetStaticPropsType } from "next";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Layout } from '@/components/';
+import { pokeApi } from '../../api';
 
-// You should use getStaticProps when:
-//- The data required to render the page is available at build time ahead of a user’s request.
-//- The data comes from a headless CMS.
-//- The data can be publicly cached (not user-specific).
-//- The page must be pre-rendered (for SEO) and be very fast — getStaticProps generates HTML and JSON files, both of which can be cached by a CDN for performance.
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  console.log('Hola mundo')
-  return {
-    props: {
-      name: 'Leandro' 
-    }
-  }
+type ResultPokemon = {
+  name: string;
+  url: string
+}
+interface ResponsePokeData {
+  count?: number;
+  next?: string;
+  previus?: any;
+  pokemons: ResultPokemon[];
 }
 
-const Home: NextPage = ({ props }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(props);
+export const getStaticProps: GetStaticProps<ResponsePokeData> = async () => {
+  const { data } = await pokeApi.get("/pokemon?limit=151");
+
+  return {
+    props: { pokemons: data?.results},
+  };
+};
+
+const Home = ( {pokemons}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log(pokemons)
   return (
     <>
       <Layout title="Pokemon App">
