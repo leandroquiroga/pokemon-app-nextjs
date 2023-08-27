@@ -1,40 +1,37 @@
 import React from 'react'
-import { GetStaticProps, InferGetStaticPropsType } from "next";
-import { Layout } from '@/components/';
+import { InferGetStaticPropsType } from "next";
 import { pokeApi } from '../../api';
+import { Layout, PokemonListCard } from '@/components/';
+import { Pokemon, PokemonListResponse } from '@/interfaces';
 
+export const getStaticProps = async () => {
+  const { data } = await pokeApi.get<PokemonListResponse>("/pokemon?limit=151");
 
-type ResultPokemon = {
-  name: string;
-  url: string
-}
-interface ResponsePokeData {
-  count?: number;
-  next?: string;
-  previus?: any;
-  pokemons: ResultPokemon[];
-}
-
-export const getStaticProps: GetStaticProps<ResponsePokeData> = async () => {
-  const { data } = await pokeApi.get("/pokemon?limit=151");
+  const pokeData: Pokemon[] = data.results.map((pokemon, index) => {
+    return {
+      ...pokemon,
+      id: index + 1,
+      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
+        index + 1
+      }.svg`,
+    };
+  });
 
   return {
-    props: { pokemons: data?.results},
+    props: { results: pokeData },
   };
 };
 
-const Home = ( {pokemons}: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(pokemons)
+const Home = ({ results }: InferGetStaticPropsType<typeof getStaticProps>) => {
+
   return (
     <>
       <Layout title="Pokemon App">
-        <h1>Hola Mundo</h1>
+          <PokemonListCard result={results}/>
       </Layout>
     </>
   );
 };
-
-
 
 
 export default Home;

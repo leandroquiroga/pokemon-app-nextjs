@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nextui-org/button": "^2.0.14",
+    "@nextui-org/card": "^2.0.15",
     "@nextui-org/react": "^1.0.2-beta.2",
     "@types/node": "20.4.10",
     "@types/react": "18.2.20",
