@@ -272,6 +272,23 @@
     "@react-types/button" "^3.7.4"
     "@react-types/shared" "^3.19.0"
 
+"@nextui-org/card@^2.0.15":
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/@nextui-org/card/-/card-2.0.15.tgz#097098b926f251184375f5922e17bdd0cc6b4a55"
+  integrity sha512-usb68c3ZPE4LbR9RtNM7LelJAciTYFvNuywv+rAH0cuDQvicaOc9wBFahqHwdBYVSMVikboJdCv9XTYpQ7R4UQ==
+  dependencies:
+    "@nextui-org/react-utils" "2.0.7"
+    "@nextui-org/ripple" "2.0.15"
+    "@nextui-org/shared-utils" "2.0.2"
+    "@nextui-org/system" "2.0.5"
+    "@nextui-org/theme" "2.1.3"
+    "@nextui-org/use-aria-button" "2.0.3"
+    "@react-aria/button" "^3.8.1"
+    "@react-aria/focus" "^3.14.0"
+    "@react-aria/interactions" "^3.17.0"
+    "@react-aria/utils" "^3.19.0"
+    "@react-types/shared" "^3.19.0"
+
 "@nextui-org/react-rsc-utils@2.0.7":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@nextui-org/react-rsc-utils/-/react-rsc-utils-2.0.7.tgz#f7ab0ef8ac39dd43c9c7649fc38d24c31a9055f3"
@@ -317,6 +334,16 @@
     "@nextui-org/system" "2.0.5"
     "@nextui-org/theme" "2.1.2"
 
+"@nextui-org/ripple@2.0.15":
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/@nextui-org/ripple/-/ripple-2.0.15.tgz#6dccb622ccb474d9c27551d3c1d44d3871d0e1b2"
+  integrity sha512-Zp2Zp6s9QuehbDlykKzfySwlglWAN1ZJl9za9IHHDzWWmalj+tS1fmvTepfnXajoxJOyQxtgbQuIsf5UONgkBA==
+  dependencies:
+    "@nextui-org/react-utils" "2.0.7"
+    "@nextui-org/shared-utils" "2.0.2"
+    "@nextui-org/system" "2.0.5"
+    "@nextui-org/theme" "2.1.3"
+
 "@nextui-org/shared-utils@2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@nextui-org/shared-utils/-/shared-utils-2.0.2.tgz#4fdb405c0a13749965cdbf9937c5a828daaf7942"
@@ -353,6 +380,30 @@
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@nextui-org/theme/-/theme-2.1.2.tgz#c8bc88687cd9972ea793a8824a06812781b2353b"
   integrity sha512-r71nB3kP5Y8aGQ2dke4Das8Fyq+B1IlvazL2xYPQBq1HwMOWL9eRsUjnIR8o2o+HqUYchLncuWzWDiKYeTy8YQ==
+  dependencies:
+    "@types/color" "^3.0.3"
+    "@types/flat" "^5.0.2"
+    "@types/lodash.foreach" "^4.5.7"
+    "@types/lodash.get" "^4.4.7"
+    "@types/lodash.kebabcase" "^4.1.7"
+    "@types/lodash.mapkeys" "^4.6.7"
+    "@types/lodash.omit" "^4.5.7"
+    color "^4.2.3"
+    color2k "^2.0.2"
+    deepmerge "4.3.1"
+    flat "^5.0.2"
+    lodash.foreach "^4.5.0"
+    lodash.get "^4.4.2"
+    lodash.kebabcase "^4.1.1"
+    lodash.mapkeys "^4.6.0"
+    lodash.omit "^4.5.0"
+    tailwind-variants "^0.1.13"
+    tailwindcss "^3.2.7"
+
+"@nextui-org/theme@2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@nextui-org/theme/-/theme-2.1.3.tgz#a496d89a424916cb367df108db4f3d285c3a87c5"
+  integrity sha512-VE+b+c6N3JrVMRty5ZX5Bg3Vg47CELpTy1KSMR4WncN6lS4qpdHqQ3+4riD9825NF4ndsXBOXt9HQwZEOenc2g==
   dependencies:
     "@types/color" "^3.0.3"
     "@types/flat" "^5.0.2"
