@@ -1,6 +1,7 @@
 import { useTheme as useNextTheme } from "next-themes";
-import { useTheme, Spacer } from "@nextui-org/react";
+import { useTheme, Spacer, Link, Text } from "@nextui-org/react";
 import { Button } from '@nextui-org/button'
+import NextLink from 'next/link'
 
 import { darkTheme, lightTheme } from '../../themes';
 import { LogoPokeDark, LogoPokeLigth, LogoMoon, LogoSun } from '../../assets';
@@ -11,7 +12,7 @@ export const NavBar = () => {
   const { setTheme, theme } = useNextTheme();
   const { isDark, type } = useTheme();
 
-  const isTheme = (): boolean => type === 'dark';
+  const isTheme = (): boolean => type === "dark";
   const handleChangeTheme = () => setTheme(!isDark ? "dark" : "light");
 
   return (
@@ -30,17 +31,26 @@ export const NavBar = () => {
         }`,
       }}>
       {isTheme() ? <LogoPokeLigth /> : <LogoPokeDark />}
+      <NextLink href="/" passHref>
+        <Link>
+          <Text h4>Pokemon</Text>
+        </Link>
+      </NextLink>
 
-      <Spacer x={30} />
+      <Spacer css={{ flex: 1}} />
 
       <Button
         isIconOnly
         onClick={handleChangeTheme}
         value={theme}
-        className={styles.buttonNavBarContainer}  
-      >
+        className={styles.buttonNavBarContainer}>
         {isTheme() ? <LogoSun /> : <LogoMoon />}
       </Button>
+      <NextLink href="/favorites" passHref>
+        <Link>
+          <Text>Favoritos</Text>
+        </Link>
+      </NextLink>
     </nav>
   );
-}
+};
