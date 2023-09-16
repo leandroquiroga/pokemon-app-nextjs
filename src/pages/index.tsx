@@ -1,7 +1,7 @@
 import React from 'react'
 import { InferGetStaticPropsType } from "next";
 import { pokeApi } from '../../api';
-import { Layout, PokemonListCard } from '@/components/';
+import { Layout, PokemonListCard, SkeletonDashboardPokemon } from '@/components/';
 import { Pokemon, PokemonListResponse } from '@/interfaces';
 
 export const getStaticProps = async () => {
@@ -23,7 +23,12 @@ export const getStaticProps = async () => {
 };
 
 const Home = ({ results }: InferGetStaticPropsType<typeof getStaticProps>) => {
-
+  
+  if (results) {
+    return (
+      <SkeletonDashboardPokemon />
+    )
+  }
   return (
     <>
       <Layout title="Pokemon App">
