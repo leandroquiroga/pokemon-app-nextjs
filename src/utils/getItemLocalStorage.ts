@@ -1,14 +1,15 @@
-const getItemLocalStorage = (id: number) => {
-  let valueButton: string;
-  let favorites: number[] = JSON.parse(
-    localStorage.getItem("favorites") || "[]"
-  );
+const getItemLocalStorage = (id: number): boolean => {
 
-  favorites.includes(id)
-    ? valueButton = 'Quitar de favoritos'
-    : valueButton = 'Guardar en favoritos';
+  // Aseguramos que el este codigo se ejecute de lado del cliente.
+  if (typeof window !== "undefined") {
+    let favorites: number[] = JSON.parse(
+      localStorage.getItem("favorites") || "[]"
+    );
 
-  return valueButton
+    return favorites.includes(id);
+  }
+
+  return false;
 };
 
-export default { getItemLocalStorage };
+export { getItemLocalStorage };

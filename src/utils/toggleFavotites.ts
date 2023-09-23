@@ -1,13 +1,21 @@
 const toggleFavorites = (id: number) => {
 
-  let favorites: number[] = JSON.parse(localStorage.getItem('favorites') || '[]');
 
-  (favorites.includes(id))
-    ? favorites = favorites.filter(pokeId => pokeId !== id)
-    : favorites.push(id);
-  
-  localStorage.setItem('favorites', JSON.stringify(favorites));
+  // Aseguramos que el este codigo se ejecute de lado del cliente. 
+  if (typeof window !== 'undefined') {
+      let favorites: number[] = JSON.parse(
+        localStorage.getItem("favorites") || "[]"
+      );
+
+      favorites.includes(id)
+        ? (favorites = favorites.filter((pokeId) => pokeId !== id))
+        : favorites.push(id);
+
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+  }
+
+  return null   
 };
 
 
-export default {toggleFavorites};
+export {toggleFavorites};

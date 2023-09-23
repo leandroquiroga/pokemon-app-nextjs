@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+import { FavoritePokemom, Layout, NoFavorites } from '@/components'
+import { pokemon } from '@/utils';
 
 const Favorites = () => {
+
+  const [favoritesPokemon, setFavoritesPokemon] = useState<number[]>();
+
+  useEffect(() => {
+    setFavoritesPokemon(pokemon)
+  }, []);
+  
   return (
-    <h1>Estos son tus favoritos</h1>
-  )
+    <Layout title="Favoritos - Pokemon">
+      {favoritesPokemon?.length === 0 ? (
+        <NoFavorites />
+      ) : (
+        <FavoritePokemom favoritesPokemon={favoritesPokemon} />
+      )}
+    </Layout>
+  );
 }
 
 
-export default Favorites
+export default Favorites 

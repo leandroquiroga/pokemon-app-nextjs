@@ -6,7 +6,7 @@ import { pokeApi } from '../../../api';
 import { PokemonFull } from '@/interfaces';
 import { Layout } from '@/components';
 import { arrNamePokemon } from '@/data/data';
-import { capitalizeLetter, getItemStorage , localFavotires } from "@/utils";
+import { capitalizeLetter, getItemLocalStorage , toggleFavorites } from "@/utils";
 
 
 import styles from "../../styles/globals.module.css";
@@ -17,13 +17,12 @@ interface PokemonPageProps {
 const PokemonPage = ({pokemon}: PokemonPageProps) => {
   const { theme } = useNextTheme();
 
-  const [textButton, setTextButton] = useState<string>('');
- 
-  const onToggleFavotire = () => localFavotires.toggleFavorites(pokemon.id!);
-  setTextButton(getItemStorage.getItemLocalStorage(pokemon.id!));
+  const [isInFavorites, setIsInFavorites] = useState<boolean>(getItemLocalStorage(pokemon.id!));
 
-
-  console.log(textButton);
+  const onToggleFavotire = () => {
+    toggleFavorites(pokemon.id!)
+    setIsInFavorites(!isInFavorites)
+  };
 
   return (
     <Layout title={capitalizeLetter(pokemon.name!)}>
@@ -66,15 +65,12 @@ const PokemonPage = ({pokemon}: PokemonPageProps) => {
               <Text transform="capitalize" h2>
                 {pokemon.name}
               </Text>
-              <Button
-                color={"gradient"}
-                ghost
-                onClick={onToggleFavotire}>
-                {textButton}
-                </Button>
+              <Button color={"gradient"} ghost={isInFavorites} onClick={onToggleFavotire}>
+                {!isInFavorites ? "Guardar de favoritos" : "Quitar en favoritos"}
+              </Button>
             </Card.Header>
             <Card.Body>
-              <Text size={30}>Sprites:</Text>
+              <Text size={30} small>Sprites:</Text>
               <Container direction="row" display="flex">
                 <Image
                   src={pokemon.sprites?.front_default || "no_image.png"}
