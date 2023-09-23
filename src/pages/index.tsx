@@ -24,7 +24,7 @@ export const getStaticProps = async () => {
 
 const Home = ({ results }: InferGetStaticPropsType<typeof getStaticProps>) => {
   
-  if (results) {
+  if (!results) {
     return (
       <SkeletonDashboardPokemon />
     )
