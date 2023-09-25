@@ -1,4 +1,4 @@
-const pokemon = (): number[] => {
+const pokemon = (): string[] => {
   return JSON.parse(localStorage.getItem('favorites') || '[]')
 }
 

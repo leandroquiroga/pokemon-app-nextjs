@@ -17,10 +17,10 @@ interface PokemonPageProps {
 const PokemonPage = ({pokemon}: PokemonPageProps) => {
   const { theme } = useNextTheme();
 
-  const [isInFavorites, setIsInFavorites] = useState<boolean>(getItemLocalStorage(pokemon.id!));
+  const [isInFavorites, setIsInFavorites] = useState<boolean>(getItemLocalStorage(pokemon.name!));
 
   const onToggleFavotire = () => {
-    toggleFavorites(pokemon.id!)
+    toggleFavorites(pokemon.name!)
     setIsInFavorites(!isInFavorites)
   };
 
@@ -108,11 +108,11 @@ const PokemonPage = ({pokemon}: PokemonPageProps) => {
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
   
-  const arrParams = arrNamePokemon.map((value) => value);
+  const arrParams = [...Array(151)].map((value, index) => `${index + 1}`);
   
   return {
-    paths: arrParams.map(name => ({
-      params: { name }
+    paths: arrParams.map(id => ({
+      params: { id }
     })),
     fallback: false
   }
@@ -120,9 +120,9 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
 export const getStaticProps: GetStaticProps = async ( {params}: GetStaticPropsContext) => {
 
-  const { name } = params as { name: string };
+  const { id } = params as { id: string };
 
-  const { data } = await pokeApi.get<PokemonFull>(`pokemon/${name}`)
+  const { data } = await pokeApi.get<PokemonFull>(`pokemon/${id}`)
 
   return {
     props: {

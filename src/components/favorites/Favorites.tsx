@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Grid } from "@nextui-org/react";
 
 interface FavoritesProps {
-  favoritesPokemon: number[] | undefined;
+  favoritesPokemon: string[] | undefined;
 }
 
 const FavoritePokemom = ({favoritesPokemon}: FavoritesProps) => {
