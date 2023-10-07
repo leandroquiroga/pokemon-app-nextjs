@@ -1,12 +1,12 @@
-const getItemLocalStorage = (name: string): boolean => {
+const getItemLocalStorage = (id: number): boolean => {
 
   // Aseguramos que el este codigo se ejecute de lado del cliente.
   if (typeof window !== "undefined") {
-    let favorites: string[] = JSON.parse(
+    let favorites: number[] = JSON.parse(
       localStorage.getItem("favorites") || "[]"
     );
 
-    return favorites.includes(name);
+    return favorites.includes(id);
   }
 
   return false;

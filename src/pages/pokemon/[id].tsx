@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import { Image, Text, Card, Grid, Button, Container } from "@nextui-org/react";
 import { useTheme as useNextTheme } from "next-themes";
-import { pokeApi } from '../../../api';
+import confetti from 'canvas-confetti';
+
 import { PokemonFull } from '@/interfaces';
 import { Layout } from '@/components';
-import { arrNamePokemon } from '@/data/data';
-import { capitalizeLetter, getItemLocalStorage , toggleFavorites } from "@/utils";
-
+import {
+  capitalizeLetter,
+  getItemLocalStorage,
+  getPokemonData,
+  toggleFavorites,
+} from "@/utils";
 
 import styles from "../../styles/globals.module.css";
 
@@ -17,11 +21,27 @@ interface PokemonPageProps {
 const PokemonPage = ({pokemon}: PokemonPageProps) => {
   const { theme } = useNextTheme();
 
-  const [isInFavorites, setIsInFavorites] = useState<boolean>(getItemLocalStorage(pokemon.name!));
+  const [isInFavorites, setIsInFavorites] = useState<boolean>(getItemLocalStorage(pokemon.id!));
 
   const onToggleFavotire = () => {
-    toggleFavorites(pokemon.name!)
-    setIsInFavorites(!isInFavorites)
+    toggleFavorites(pokemon.id!)
+    setIsInFavorites(!isInFavorites); 
+
+    if (!isInFavorites) {
+      confetti({
+        spread: 160,
+        ticks: 50,
+        decay: 0.94,
+        gravity: 0,
+        startVelocity: 50,
+        shapes: ["star"],
+        colors: ["FFE400", "FFBD00", "E89400", "FFCA6C", "FDFFB8"],
+        particleCount: 140,
+        scalar: 1.2,
+        origin: { x: 0.80},
+        drift: -10
+      });
+    }
   };
 
   return (
@@ -119,14 +139,12 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 };
 
 export const getStaticProps: GetStaticProps = async ( {params}: GetStaticPropsContext) => {
-
   const { id } = params as { id: string };
-
-  const { data } = await pokeApi.get<PokemonFull>(`pokemon/${id}`)
+  const pokemon = await getPokemonData(id);
 
   return {
     props: {
-      pokemon: data
+      pokemon,
     },
   };
 };

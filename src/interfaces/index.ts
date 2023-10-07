@@ -198,3 +198,10 @@ export interface Type {
   slot?: number;
   type?: Species;
 }
+
+
+export interface DataPokemon {
+  id?: number;
+  name?: string;
+  sprites?: Sprites;
+};
