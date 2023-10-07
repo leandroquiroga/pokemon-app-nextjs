@@ -1,4 +1,5 @@
 export { capitalizeLetter } from './capitalizeLetter';
-export { toggleFavorites } from './toggleFavotites'
 export { getItemLocalStorage } from './getItemLocalStorage';
+export { getPokemonData } from './getPokemonData';
 export { pokemon } from './pokemon';
+export { toggleFavorites } from './toggleFavotites'

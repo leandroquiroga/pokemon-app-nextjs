@@ -14,8 +14,8 @@ export const PokemonListCard = ({result}: ListPokemon) => {
   const router = useRouter();
   const { theme } = useNextTheme();
 
-  const handlePokemonOnClick = (name: string) => {
-    router.push(`pokemon/${name}`)
+  const handlePokemonOnClick = (id: number) => {
+    router.push(`pokemon/${id}`)
   }
 
   return (
@@ -23,7 +23,7 @@ export const PokemonListCard = ({result}: ListPokemon) => {
       {result.map((pokemon) => (
         <Card
           key={pokemon.name}
-          onClick={() => handlePokemonOnClick(pokemon.name)}
+          onClick={() => handlePokemonOnClick(pokemon.id)}
           className={`
             ${styles.cardPokemon}
             ${theme === "dark" ? styles.cardPokemonDark : styles.cardPokemonLigth}

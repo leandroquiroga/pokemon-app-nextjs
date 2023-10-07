@@ -8,7 +8,7 @@ const toggleFavorites = (id: number) => {
       );
 
       favorites.includes(id)
-        ? (favorites = favorites.filter((pokeId) => pokeId !== id))
+        ? (favorites = favorites.filter((pokeID) => pokeID !== id))
         : favorites.push(id);
 
       localStorage.setItem("favorites", JSON.stringify(favorites));
